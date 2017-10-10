@@ -14,8 +14,9 @@ def main():
         username=credentials["username"], password=credentials["password"])
     clw = CleverBotConnector(remote_url=credentials["selenium_url"])
 
+    print("All modules loaded, ready for conversations! Please type in your message \n")
     while active:
-        message = raw_input("<Enter Message> :  ")
+        message = raw_input("<You> : ")
 
         if message == "Bye":
             tts.say("Bye Bye! Nice to talk with you!")
@@ -29,7 +30,7 @@ def main():
             tts.say(message, voice="en-US_AllisonVoice")
             reply = clw.talk(message)
 
-            print("Watson says: " + reply)
+            print("<Watson> : " + reply)
             tts.say(reply)
 
 

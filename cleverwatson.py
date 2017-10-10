@@ -30,8 +30,6 @@ class CleverBotConnector(object):
                 self.driver = webdriver.Firefox()
 
             self.driver.get("http://cleverbot.com")
-            print("Done!")
-
             return True
         else:
             return False
@@ -79,8 +77,6 @@ class TextToSpeech(object):
         self.passwd = password
         self.tts = TextToSpeechV1(
             username=self.user, password=self.passwd,  x_watson_learning_opt_out=True)
-
-        print("Done!")
 
     def say(self, message, voice="en-US_MichaelVoice"):
         """Converts a given message into audio file using watson text to speech"""
