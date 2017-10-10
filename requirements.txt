@@ -1,0 +1,2 @@
+selenium==3.6.0
+watson-developer-cloud==0.26.1

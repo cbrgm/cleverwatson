@@ -1,0 +1,3 @@
+*.pyc
+resources/credentials.json
+*.log
