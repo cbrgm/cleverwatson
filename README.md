@@ -2,7 +2,7 @@
 
 [![Build Status](http://dev.cynthek.de/api/badges/cbrgm/cleverwatson/status.svg)](http://dev.cynthek.de/cbrgm/cleverwatson)
 
-![WatsonLogo](https://www.hrblock.com/images/lp/fy17/watson/with-watson.png)
+![WatsonLogo](https://www.hrblock.com/images/lp/fy17/watson/with-watson.png) ![cleverbot](http://www.cleverbot.com/images/cleverbot226x94.jpg)
 
 ## Description
 
