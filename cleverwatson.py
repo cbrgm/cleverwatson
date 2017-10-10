@@ -46,7 +46,7 @@ class CleverBotConnector(object):
                 "input.stimulus")
             webelement.send_keys(message)
             webelement.send_keys(Keys.RETURN)
-            time.sleep(3)  # wait for 3 seconds, then return response
+            time.sleep(5)  # wait for 5 seconds, then return response
             webelement = self.driver.find_elements_by_xpath(
                 "//span[contains(@class,'bot')]")
             return webelement[-1].text

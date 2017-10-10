@@ -60,6 +60,36 @@ CleverWatson uses Selenium to communicate with CleverBot. The geckodriver is use
 
 Start the script using `python main.py` command. All services are automatically loaded and you can start the conversation with Cleverbot by typing in a message.
 
+```bash
+You: Hi, how are you?
+Watson says: I good and you.
+
+You: Whats your name again?
+Watson says: I never mentioned my name before.
+
+You: So whats your name? Tell me please!
+Watson says: My name is Xavier.
+
+You: Xavier? I like that name
+Watson says: Oh, thank you!
+
+You: You have a wonderful voice
+Watson says: No, I am mute.
+
+You: Really? I dont think so
+Watson says: Is your friend Katie single?
+
+You: No she isnt!
+Watson says: Are you a boy or girl?
+
+You: Lets stop this conversation here...
+Watson says: Okay.
+
+You: Bye
+Watson says: Bye Bye! Nice to talk with you!
+
+```
+
 ### Python Version
 
 The script has been successfully tested with Python2.7
