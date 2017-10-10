@@ -28,9 +28,11 @@ Copy your credentials from the **Service details** page. To find the the Service
 ```json
 {
   "url": "https://stream.watsonplatform.net/text-to-speech/api",
+  "selenium_url": null,
   "username": "INSERT BLUEMIX CREDENTIALS",
   "password": "INSERT BLUEMIX CREDENTIALS"
 }
+
 
 ```
 
@@ -50,9 +52,14 @@ pip install -r requirements.txt
 python main.py
 ```
 
-### Install Selenium geckodrivers
+### Setting up Selenium
 
-CleverWatson uses Selenium to communicate with CleverBot. The geckodriver is used, which must be downloaded and added to the path. Latest `geckodriver` release can be found [here][b2537cd7].
+#### Using local Selenium Webdrivers
+CleverWatson uses Selenium to communicate with CleverBot. The geckodriver is used, which must be downloaded and added to the path if you want to execute Selenium locally. Latest `geckodriver` release can be found [here][b2537cd7].
+
+#### Using remote Selenium Webdrivers
+
+Instead you can also set the `selenium_url` variable in `credentials.json` using your remote webdriver address in format `http://<url>:<port>/wd/hub/`.
 
   [b2537cd7]: https://github.com/mozilla/geckodriver/releases "geckodriver"
 

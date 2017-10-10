@@ -3,6 +3,7 @@
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
 import json
 
@@ -10,15 +11,21 @@ import json
 class CleverBotConnector(object):
     """Connecting IBM Watson API with Chatbot. Do conversations with Watson and let him talk with you"""
 
-    def __init__(self):
+    def __init__(self, remote_url=None):
         """Startup for watsontalker"""
         self.driver = None
-        self.startup()
+        self.startup(remote_url)
 
-    def startup(self):
+    def startup(self, remote_url=None):
         """Check if Watsontalker in interactive or not"""
         if self.driver is None:
-            self.driver = webdriver.Firefox()
+            if remote_url:
+                capabilities = DesiredCapabilities.FIREFOX.copy()
+                self.driver = webdriver.Remote(
+                    command_executor=remote_url, desired_capabilities=capabilities)
+            else:
+                self.driver = webdriver.Firefox()
+
             self.driver.get("http://cleverbot.com")
             return True
         else:
@@ -60,25 +67,15 @@ import os
 class TextToSpeech(object):
     """Encapsulates IBMs text to speech service"""
 
-    def __init__(self):
+    def __init__(self, username, password):
 
         print("Initializing TextToSpeech ...")
-        credentials = self.load_credentials()
-        self.user = credentials["username"]
-        self.passwd = credentials["password"]
+        self.user = username
+        self.passwd = password
         self.tts = TextToSpeechV1(
             username=self.user, password=self.passwd,  x_watson_learning_opt_out=True)
 
         print("Done!")
-
-    def load_credentials(self):
-        """loads the credentials for ibm speech to text api stored in /resources/credentials.json"""
-        print("Loading credentials from ./resources/credentials.json ...")
-        base_dir = os.path.abspath(os.path.dirname(__file__))
-        filepath = os.path.join(base_dir, "./resources/credentials.json")
-        with open(filepath) as credentials_file:
-            data = json.load(credentials_file)
-        return data
 
     def say(self, message):
         """Converts a given message into audio file using watson text to speech"""
