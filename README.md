@@ -1,6 +1,8 @@
-# CleverWatson - Talk with CleverBot using natural language
+# **CleverWatson** - Talk with CleverBot using natural language
 
 [![Build Status](http://dev.cynthek.de/api/badges/cbrgm/cleverwatson/status.svg)](http://dev.cynthek.de/cbrgm/cleverwatson)
+
+![WatsonLogo](https://www.hrblock.com/images/lp/fy17/watson/with-watson.png)
 
 ## Description
 
@@ -62,6 +64,17 @@ CleverWatson uses Selenium to communicate with CleverBot. The geckodriver is use
 Instead you can also set the `selenium_url` variable in `credentials.json` using your remote webdriver address in format `http://<url>:<port>/wd/hub/`.
 
   [b2537cd7]: https://github.com/mozilla/geckodriver/releases "geckodriver"
+
+#### Using remote Selenium Webdrivers with Docker
+
+You can also run webdrivers remotely using a docker container. Pull the latest docker image using `docker pull selenium/standalone-firefox:latest`. Use the following commands to run the container
+
+```bash
+docker run -d -P --selenium-docker selenium/standalone-firefox:latest
+$ docker port selenium-docker 4444
+#=> 0.0.0.0:49338
+```
+Set the `selenium_url` variable in `credentials.json` using `http://localhost:<dockerport>/wd/hub`.
 
 ## Examples
 
