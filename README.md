@@ -70,11 +70,11 @@ Instead you can also set the `selenium_url` variable in `credentials.json` using
 You can also run webdrivers remotely using a docker container. Pull the latest docker image using `docker pull selenium/standalone-firefox:latest`. Use the following commands to run the container
 
 ```bash
-docker run -d -P --selenium-docker selenium/standalone-firefox:latest
+$ docker run -d -p 4444:4444 --name selenium-docker selenium/standalone-firefox:latest
 $ docker port selenium-docker 4444
-#=> 0.0.0.0:49338
+#=> 0.0.0.0:4444
 ```
-Set the `selenium_url` variable in `credentials.json` using `http://localhost:<dockerport>/wd/hub`.
+Set the `selenium_url` variable in `credentials.json` using `http://localhost:4444/wd/hub`. When the container is started, the script can be executed using `python main.py`.
 
 ## Examples
 
