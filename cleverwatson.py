@@ -14,11 +14,14 @@ class CleverBotConnector(object):
     def __init__(self, remote_url=None):
         """Startup for watsontalker"""
         self.driver = None
+        self.remote_url = remote_url
         self.startup(remote_url)
 
     def startup(self, remote_url=None):
         """Check if Watsontalker in interactive or not"""
         if self.driver is None:
+            print("Initializing CleverBotConnector...")
+
             if remote_url:
                 capabilities = DesiredCapabilities.FIREFOX.copy()
                 self.driver = webdriver.Remote(
@@ -27,6 +30,8 @@ class CleverBotConnector(object):
                 self.driver = webdriver.Firefox()
 
             self.driver.get("http://cleverbot.com")
+            print("Done!")
+
             return True
         else:
             return False
@@ -44,7 +49,7 @@ class CleverBotConnector(object):
         """Reset the conversation, close connection and initialize connection again"""
         if self.driver is not None:
             self.shutdown()
-            self.startup()
+            self.startup(self.remote_url)
 
     def talk(self, message):
         """Sends a message to watsontalker and he will reply to you"""
@@ -53,7 +58,7 @@ class CleverBotConnector(object):
                 "input.stimulus")
             webelement.send_keys(message)
             webelement.send_keys(Keys.RETURN)
-            time.sleep(5)  # wait for 5 seconds, then return response
+            time.sleep(4)  # wait for 5 seconds, then return response
             webelement = self.driver.find_elements_by_xpath(
                 "//span[contains(@class,'bot')]")
             return webelement[-1].text
@@ -77,14 +82,13 @@ class TextToSpeech(object):
 
         print("Done!")
 
-    def say(self, message):
+    def say(self, message, voice="en-US_MichaelVoice"):
         """Converts a given message into audio file using watson text to speech"""
         base_dir = os.path.abspath(os.path.dirname(__file__))
         filepath = os.path.join(base_dir, "resources/output.wav")
         with open(filepath, "w+") as audio_file:
             audio_file.write(self.tts.synthesize(message, accept='audio/wav',
-                                                 voice="en-US_AllisonVoice"))
-        print("Watson says: " + message)
+                                                 voice=voice))
         self.play_audio()
 
     def play_audio(self):

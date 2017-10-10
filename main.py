@@ -15,16 +15,21 @@ def main():
     clw = CleverBotConnector(remote_url=credentials["selenium_url"])
 
     while active:
-        message = raw_input("You: ")
+        message = raw_input("<Enter Message> :  ")
 
         if message == "Bye":
             tts.say("Bye Bye! Nice to talk with you!")
             clw.shutdown()
             quit()
         elif message == "Reset":
+            tts.say(
+                "Im restarting my system! Hang on a second! Maybe you can count sheeps in the meantime or so...")
             clw.reset()
         else:
+            tts.say(message, voice="en-US_AllisonVoice")
             reply = clw.talk(message)
+
+            print("Watson says: " + reply)
             tts.say(reply)
 
 

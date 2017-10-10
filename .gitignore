@@ -1,3 +1,4 @@
 *.pyc
 /resources/credentials.json
+/resources/output.wav
 *.log
